@@ -1,89 +1,150 @@
-# 💸 App de Organização de Finanças Pessoais com Vibe Coding
+# 💸 App de Organização de Finanças Pessoais feito com Vibe Coding
 
-Aprenda a **criar soluções com IA** de forma criativa, guiando ferramentas como o **Copilot** e o **Lovable** com uma comunicação simples e natural. O foco é desenvolver o conceito de um **App de Organização de Finanças Pessoais**, mas, acima de tudo, aprender o **jeito Vibe de programar com IA**.
+## 1- PRD refinado utilizando Open Code:
+```
+## Público-alvo
 
-## ✨ O que é Vibe Coding
+- Pessoas que querem começar a controlar o dinheiro, mas foram desestimuladas por apps complexos
+  
+- Pessoas acostumadas a conversar por WhatsApp/Telegram
+  
+- Pessoas que não precisam de relatórios financeiros profissionais, apenas de "saber para onde o dinheiro foi"
+  
 
-**Vibe Coding** é uma forma leve e criativa de desenvolver com IA, baseada em **conversas naturais e bem estruturadas**. Você não precisa escrever código linha por linha. Em vez disso, aprende a **guiar a IA** descrevendo suas ideias de forma clara, com **intenção e contexto**. Em outras palavras:
+## Páginas e componentes principais (3 páginas centrais)
 
-> Você mostra a vibe da sua ideia e a IA transforma em solução (ou em um caminho para ela).
+### Página 1: Home do chat (interface principal)
 
-## 🎯 Desafio
+**A primeira página que o usuário vê ao abrir o app.** Layout: no topo, avatar do agente e uma saudação (ex.: "O que você gastou hoje? Me conta"), no meio a lista de mensagens da conversa, na parte inferior o campo de entrada e o botão de enviar.
 
-Problema: Muitas pessoas não conseguem manter um controle financeiro porque os aplicativos exigem muita entrada de dados manual, e a criação de orçamentos é vista como algo tedioso. 
+**Os balões de mensagem são de dois tipos:**
 
-Precisamos de uma solução que permita **controlar as finanças por meio de uma conversa simples**, com **agentes de IA** capazes de criar **planos de economia personalizados e automatizados**. Você deve utilizar as ideias de **Vibe Coding** e **MVP (Produto Mínimo Viável)** para desenvolver o **conceito de um aplicativo** que resolva o problema citado.
+- Mensagem do usuário: à direita, fundo claro, exibindo o texto original digitado (ex.: "táxi 28")
+  
+- Resposta do agente: à esquerda, exibindo a confirmação (ex.: "✅ Transporte · Táxi · 28,00 reais, registrado. Este mês você já gastou 312,00 reais em transporte, 15% menos que no mesmo período do mês passado")
+  
 
-> [!IMPORTANT]
-> Você **não precisa construir o código**! O foco está em **usar a IA como sua parceira criativa**, transformando boas ideias e prompts em conceitos funcionais que simulam um produto real.
+**Estado vazio:** se ainda não houver nenhum registro, exibir uma mensagem de boas-vindas do agente: "Olá 👋 Sou seu assistente financeiro. Tente me contar um gasto de hoje, como 'almoço 30 reais', e eu registro para você."
 
-## 🪄 Etapas do Desafio
+**Ação central:** o usuário digita uma frase → o agente interpreta e confirma → registro concluído.
 
-### 1. Saber o que Pedir é a Chave! Otimize seus Prompts!
+### Página 2: Visão geral financeira
 
-Antes de pedir para a IA "criar um app", é importante definir com clareza o que você quer construir e por quê. Para isso, você vai criar um **PRD (Product Requirements Document)** simplificado, uma especificação que serve como _briefing_ para a IA entender sua ideia.
+**Exibe o resumo dos gastos do mês.** No topo, um cartão grande mostra "Gasto este mês RX, orç​amento restante RY" (se o usuário tiver definido um orçamento). Abaixo, um gráfico de barras horizontais por categoria: alimentação, transporte, compras, lazer, outros, cada categoria com valor e percentual. Mais abaixo, uma lista das 5 transações mais recentes, cada uma com ícone de categoria, valor e descrição curta.
 
-Um bom PRD deve descrever o problema, quem será beneficiado, as principais funcionalidades e o que você espera que a IA entregue. Use o modelo abaixo como ponto de partida e adapte conforme o seu estilo:
+**Estado vazio:** se não houver dados, exibir "Depois de registrar o primeiro gasto, seu resumo aparecerá aqui."
 
-```txt
-# Contexto
-Quero criar um aplicativo de Organização de Finanças Pessoais que funcione por meio de conversas com o usuário.  
-A ideia é facilitar o controle financeiro de forma simples e natural, sem formulários manuais ou planilhas complexas.
+**Ação central:** o usuário vê num relance para onde o dinheiro foi, sem precisar analisar.
 
-# Problema
-Muitas pessoas desistem de controlar seus gastos porque os apps atuais exigem muita entrada manual e pouca personalização.  
-Quero resolver isso com uma experiência de conversa e recomendações automáticas de economia.
+### Página 3: Metas e sugestões
 
-# Público-Alvo
-Pessoas que querem começar a organizar suas finanças de forma prática e sem complicação, principalmente iniciantes.
+**Parte superior:** um cartão de "meta de economia". Se o usuário ainda não tiver meta, exibir um botão arredondado "Definir uma pequena meta"; ao clicar, abre um formulário simples: nome da meta (ex.: "guardar 500 reais"), valor da meta, data limite. Com meta existente, exibir barra de progresso e dias restantes.
 
-# Funcionalidades-Chave
-1. Registrar gastos via chat em linguagem natural.  
-2. Classificar automaticamente as transações.  
-3. Definir e acompanhar metas financeiras.  
-4. Receber dicas de economia do “Agente Financeiro”.  
-5. Visualizar relatórios simples e personalizados.
+**Parte inferior:** lista de sugestões de economia do agente. Cada sugestão é um cartão claro, com uma frase concreta e um ícone pequeno. As sugestões são geradas com base nos registros reais do usuário, por exemplo: "Você gastou R 420 reais em delivery este mês. Se pedir duas vezes menos por semana, pode economizar 160 reais até o fim do mês."
 
-# Entregável da IA
-Gerar um plano de MVP com as principais telas, recursos necessários e um esboço de validação inicial.  
-Usar tom educativo e linguagem acessível, em português.
+**Estado vazio:** "Depois de registrar alguns gastos, vou dar sugestões de economia aqui."
+
+## Direção de design
+
+**Palavras-chave: acolhedor, limpo, sem julgamento.** Use uma paleta quente e suave (fundo bege claro + detalhes em âmbar/verde-claro), cantos bem arredondados, muito espaço em branco, fonte sem serifa como Inter. Não use vermelho para marcar "estouro de orçamento"; use laranja ou cinza para evitar que o usuário se sinta culpado. A sensação geral deve ser de um caderno limpo, não de um app bancário.
+
+## Lógica de interação principal (regras para o Lovable)
+
+- Após o usuário digitar uma frase, o agente precisa **primeiro interpretar e depois confirmar**: extrair do texto o valor e a categoria (alimentação/transporte/compras/lazer/outros) e então responder com uma mensagem de confirmação. Se a interpretação for incerta (por exemplo, "gastei 50" sem dizer com o quê), o agente pergunta: "Esses 50 reais foram gastos com quê?"
+  
+- **Regras de classificação:** almoço/jantar/café/delivery → alimentação; táxi/metrô/ônibus/combustível → transporte; roupas/itens de uso diário/compras online → compras; cinema/jogos/baladas → lazer; o restante vai para "outros".
+  
+- **Regras de geração de sugestões:** quando o gasto mensal de uma categoria ultrapassar 80% do orçamento daquela categoria, ou quando o gasto de uma categoria crescer mais de 30% em relação ao mesmo período do mês anterior, disparar uma sugestão.
+  
+
+## Restrições técnicas (escopo compreensível pelo Lovable)
+
+- Frontend em React + Tailwind (stack padrão do Lovable)
+  
+- Dados armazenados inicialmente no navegador (localStorage), sem sistema de login, para reduzir a complexidade do MVP
+  
+- Mobile-first, largura de página adaptada a telas de celular
+  
+- Não é necessário backend real de IA; usar um motor de regras para simular "respostas inteligentes" (com base em correspondência de palavras-chave + extração simples de valores)
+  
+
+## Critérios de aceitação
+
+1. O usuário digita "almoço 35" → em até 3 segundos aparece a mensagem de confirmação do agente e a página de visão geral mostra um registro "Alimentação · R$ 35".
+  
+2. O usuário registra 3 gastos consecutivos de categorias diferentes → o gráfico de barras da visão geral exibe corretamente a proporção das três categorias.
+  
+3. O usuário define a meta "guardar 500 reais" e registra um gasto → a página de metas exibe o valor restante correto.
+  
+4. Em telas de celular, todas as páginas podem ser visualizadas por completo sem rolagem horizontal.
+  
+5. Ao abrir o app pela primeira vez e sem dados, as três páginas exibem textos de orientação amigáveis, e não telas em branco.
+
+```
+## 2- Interação utilizada no Open Code:
+
+Foi utilizada a seguinte interação no prompt da ferramenta:
+> Conforme arquivo PRD (Product Requirements Document) em anexo, crie um aplicativo de finanças pessoais. 
+
+## 3- Resultado Final
+
+| Conversa                            | Resumo                           | Metas                                 |
+| ----------------------------------- | -------------------------------- | ------------------------------------- |
+| ![Tela de conversa](docs/chat.jpeg) | ![Visão geral](docs/resumo.jpeg) | ![Metas e sugestões](docs/metas.jpeg) |
+
+A aplicação foi criada como página web e está hospedada de forma local através do endereço http://127.0.0.1:5173.
+
+## 4- O que dá para fazer?
+
+### 💬 Conversa (home)
+
+- Escreva como numa conversa: `almoço 35`, `táxi 28`, `cinema 40`, `mercado 120`.
+- O agente interpreta valor, categoria e descrição, **registra e confirma** com o total da categoria no mês e o orçamento restante.
+- Se o valor vier sem contexto (`gastei 50`), ele pergunta: *“Esses 50 reais foram gastos com quê?”* — e completa o registro com a próxima resposta.
+- Também entende comandos de apoio:
+  - `guardei 100` → soma uma contribuição à meta.
+  - `meta de 500 reais até dezembro` → cria/edita a meta.
+  - `quanto gastei este mês` / `resumo` / `como estou` → resumo do mês.
+  - `orçamento 2.000` e `limite de alimentação 700` → ajusta o orçamento.
+  - `desfaz` / `apaguei errado` → remove o último registro.
+  - `ajuda` → mostra os comandos disponíveis.
+- Mensagens e registros persistem no navegador; o histórico da conversa continua depois de fechar a aba.
+
+## 5- Como rodar a aplicação
+
+### Requisitos:
+- **Node.js 22+** e **npm**;
+
+```bash
+npm install npm run dev # http://localhost:5173
+npm run build # checagem de tipos + build de produção em dist/
+npm run preview # serve o build
+npm test # 58 testes com Vitest
 ```
 
-Depois de preencher o modelo, use o Copilot Web para revisar e melhorar o seu prompt antes de ir ao Lovable. A ideia é lapidar o texto até que ele fique claro, direto e reflita exatamente a sua intenção.
+### Stack:
+- **React 19** + **Typescript** + **Vite 8**;
+- **Tailwind CSS4** (tokens de tema em ´src/index.css´);
+- **Lucide-react** para os ícones;
+- **Vitest** para os testes das regras de negócio;
+- Sem backend, sem login, sem dependências de IA: os dados ficam em ´localStorage´;
 
-> [!TIP]
-> Pense no PRD/Prompt como “o briefing que a IA precisa para entender sua vibe”. Portanto, quanto mais claro e intencional for o texto, mais próximas do ideal serão as respostas da IA.
+### Estutura de pastas:
+```
+src/
+├── components/      # Sheet, formulários de meta/contribuição/orçamento, avatar, toast
+├── lib/
+│   ├── agent.ts     # cérebro conversacional (função pura)
+│   ├── parse.ts     # extração de valores, categorias, prazos e nomes
+│   ├── categories.ts# metadados e motor de palavras-chave
+│   ├── suggestions.ts# regras de sugestão
+│   ├── goal.ts      # progresso da meta
+│   ├── finance.ts   # agregações por mês/categoria
+│   ├── dates.ts     # utilitários de calendário local
+│   ├── storage.ts   # persistência + validação
+│   └── *.test.ts    # testes das regras
+├── pages/           # ChatPage, OverviewPage, GoalsPage
+├── store/           # FinanceProvider (estado, persistência, ações)
+└── index.css        # tema, tokens e animações
 
-### 2. Explorando o Lovable na Prática
-
-Com seu PRD pronto e revisado, é hora de colocar a IA em ação. Abra o Lovable, cole seu prompt completo e peça o plano inicial do MVP do seu aplicativo. Como o plano gratuito limita você a 5 interações por dia, seja estratégico:
-- Faça perguntas diretas e construtivas, como “crie o fluxo de telas com base nas funcionalidades listadas” ou “gere uma versão resumida do plano de MVP”;
-- Priorize clareza nas instruções para aproveitar ao máximo cada resposta;
-
-Durante essa etapa, você pode orientar a IA para três entregas principais:
-1. Agente Financeiro: defina o comportamento e o tom de voz de um consultor financeiro pessoal, alinhado ao público e objetivo do app.
-2. Fluxo de Telas: peça à IA para gerar o fluxo conceitual de telas com base nas funcionalidades descritas no PRD, simulando a interação por conversa.
-3. Plano de MVP: solicite um resumo das 5 funcionalidades principais, dos recursos necessários e um plano de validação inicial (como medir se o app cumpre seu propósito).
-
-> [!TIP]
-> Se preferir, você pode fazer tudo com o **Copilot**. O importante é exercitar a habilidade de transformar intenções em instruções claras e testar os limites da IA como parceira criativa.
-
-### 3. Entregando o Desafio na DIO
-
-Finalize seu projeto criando um **repositório no GitHub** (pode ser um **fork** deste).  
-No README do seu repositório, inclua:
-
-- Seu **prompt final** (PRD);  
-- Prints ou pequenos vídeos das interações com a IA;  
-- Um resumo do que o seu **App de Finanças Pessoais** faz;  
-- Uma breve **reflexão sobre o processo**:
-  - O que funcionou bem?  
-  - O que não funcionou como o esperado?  
-  - O que aprendeu sobre conversar com IAs?
-
-> [!TIP]
-> Publique seu repositório e compartilhe o link na plataforma da DIO! Sua entrega é a prova de que você domina o raciocínio de Vibe Coding, mesmo sem escrever uma única linha de código.
-
-## 💬 Conclusão
-
-Vibe Coding é sobre clareza, curiosidade e criatividade, não sobre perfeição técnica. O verdadeiro objetivo aqui é aprender a pensar junto com a IA, transformando ideias em conceitos reais e enxergando a tecnologia como uma extensão do seu raciocínio criativo. Cada interação é um experimento, quanto mais clara for sua intenção, mais surpreendente será o resultado.
+```
